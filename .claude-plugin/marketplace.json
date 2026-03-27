@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "iluhaha-skills",
+  "description": "Custom skills by iluhaha",
+  "owner": {
+    "name": "iluhaha"
+  },
+  "plugins": [
+    {
+      "name": "iluhaha-skills",
+      "description": "Marketing strategy builder — comprehensive data-driven strategies with research, analytics, and HTML presentation",
+      "source": ".",
+      "category": "productivity"
+    }
+  ]
+}
