@@ -1,0 +1,16 @@
+{
+  "name": "iluhaha-skills",
+  "description": "Marketing strategy builder — comprehensive data-driven strategies with research, analytics, and HTML presentation",
+  "version": "1.0.0",
+  "author": {
+    "name": "iluhaha"
+  },
+  "homepage": "https://github.com/iluhaha/skills",
+  "repository": "https://github.com/iluhaha/skills",
+  "keywords": [
+    "marketing",
+    "strategy",
+    "media-plan",
+    "analytics"
+  ]
+}
