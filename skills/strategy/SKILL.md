@@ -19,6 +19,23 @@ Do NOT start writing the strategy until discovery questions are answered and res
 2. **Cross-check critical numbers** — verify key figures (market sizes, exchange rates, visitor counts, revenue) against at least 2 independent primary sources (official sites, ЦБ РФ, Росстат, АКАР, company reports)
 3. **Flag unverified data** — if a number could not be cross-verified, mark it as "[оценка]" or "[требует проверки]" in the strategy text
 4. **Never trust a single AI-aggregated source** for financial data, exchange rates, or market volumes
+
+**Source Priority Hierarchy (EXPANDED):**
+
+| Приоритет | Тип источника | Примеры | Когда использовать |
+|-----------|--------------|---------|-------------------|
+| P1 | Государственные/регуляторные | cbr.ru, rosstat.gov.ru, mos.ru, ФНС | Макро-данные, ставки, инфляция, население |
+| P2 | Крупные федеральные СМИ | rbk.ru, kommersant.ru, vedomosti.ru, interfax.ru, tass.ru | Подтверждённые факты, аналитика |
+| P3 | Отраслевые исследовательские компании | mediascope.net, nielsen.com, kantar.com, ipsos-comcon.ru, getbrand.ru | Медиа-данные, потребитель, Brand Health |
+| P4 | Индустриальные ассоциации и аналитика | akarussia.ru (АКАР), interactivead.ru (АРИР), autostat.ru, digitalbudget.ru | Рекламный рынок, отраслевые данные |
+| P5 | Профессиональные отраслевые медиа | sostav.ru, adindex.ru, autonews.ru, habr.com | Тренды, кейсы, экспертные мнения |
+| P6 | Платформы и их аналитика | yandex.ru/adv, ads.vk.com, avito.tech, vk.company | Данные по платформам, аудитории |
+| P7 | Консалтинг и аналитические компании | yakovpartners.ru, bcg.com, mckinsey.com | Стратегические обзоры, прогнозы |
+| P8 | Агрегаторы, TG-каналы, блоги | Новостные TG-каналы, блоги, форумы | ПОСЛЕДНИЙ приоритет, перепроверять |
+
+**Правило приоритизации:** Если ЦБ РФ говорит одно, а новостной TG-канал другое — верим ЦБ РФ. Если Mediascope даёт цифры по аудитории, а блогер другие — верим Mediascope. Всегда предпочитать первоисточник агрегатору.
+
+**Правило отбора информации:** При ограничении объёма (количество слайдов, длина текста) — приоритизировать от наиболее значимого к наименее. Идти от общего к частному. НЕ выбирать рандомно — ранжировать по влиянию на бренд, категорию, потребителя.
 </HARD-GATE>
 
 ## Process Flow
@@ -41,22 +58,48 @@ DISCOVERY → BRIEF.YAML → RESEARCH (Perplexity primary + WebSearch spot-check
 
 **NEVER mention Perplexity in output files.** Use "открытые источники" or specific source names instead.
 
-## Phase 1: Discovery Questions
+## Phase 1: Discovery & Brief Analysis
 
-Ask questions **one at a time**. Prefer multiple choice. If user provided a brief/PDF, extract answers from it first and only ask what's missing.
+### Step 1A: Brief Intake
 
-### Required Context (must know before research)
+If the user provides a brief (PDF, PPTX, document, or text), **read and analyze it first**. Extract and present:
+
+1. **Задачи брифа** — что клиент хочет получить в качестве готового продукта (например, презентация из N блоков, HTML-сайт, медиаплан)
+2. **Стратегические задачи бизнеса и маркетинга** — сформулировать, даже если клиент их не описал. Вывести из контекста брифа: что стоит за запросом?
+3. **Задачи агентства** — какие функции агентство должно исполнять, какая нужна команда (SMM, ORM, PR, медиа, креатив, аналитика)
+4. **Дисциплины стратегии** — определить, какие блоки нужны:
+   - ☑ Аналитика (всегда)
+   - ☑ Коммуникационная стратегия (всегда)
+   - ☐/☑ SMM (отдельный блок с контент-планом и медиапланом)
+   - ☐/☑ ORM/SERM (репутация, social listening, работа с отзывами)
+   - ☐/☑ PR (медиа-отношения, спецпроекты, работа с журналистами)
+   - ☐/☑ Influence-маркетинг (KOL/KOC стратегия)
+   - ☐/☑ Медийная стратегия (медиаплан с CPM/CPF/Reach)
+5. **Запросы к клиенту** — конкретный список того, что нужно дополнительно:
+   - Ретроспективные данные (продажи, трафик, подписчики, бюджеты прошлых периодов)
+   - Brand Health данные (UBA, NPS, Brand Attributes), если есть
+   - Текущие медиапланы и их результаты
+   - Данные из CRM / аналитики (Google Analytics, Яндекс.Метрика)
+   - Доступ к платным отчётам (Autostat, Mediascope, Digital Budget и т.д.)
+   - Бизнес-цели, если не сформулированы в брифе
+
+Present this analysis to the user and confirm before proceeding.
+
+### Step 1B: Discovery Questions
+
+Ask questions **one at a time**. Prefer multiple choice. If brief already provided answers, skip those and only ask what's missing.
 
 | # | Question | Why needed |
 |---|----------|------------|
 | 1 | **Что за бренд/продукт?** Название, категория, что продаёт/делает, сайт | Определяет всё исследование |
 | 2 | **Текущее состояние маркетинга?** (a) Старт с нуля (b) Есть активности, нужна систематизация (c) Есть стратегия, нужно обновить | Глубина аналитики |
 | 3 | **Главная цель стратегии?** (a) Узнаваемость/awareness (b) Трафик/посетители/лиды (c) Продажи/конверсия (d) Всё вместе | Фокус стратегии |
-| 4 | **Целевая аудитория** — кто ваш клиент? Возраст, пол, доход, география, интересы | Каналы и месседжи |
+| 4 | **Целевая аудитория** — кто ваш клиент? Возраст, пол, доход, география, интересы. Есть ли конкретные сегменты (например, мужчины 18-44)? | Каналы и месседжи |
 | 5 | **Ключевые конкуренты** — назовите 3-5 прямых конкурентов | Конкурентный анализ |
 | 6 | **География продвижения?** (a) Один город (b) Россия (c) Россия + СНГ (d) Международный | Масштаб исследования |
 | 7 | **Бюджетный коридор?** (a) до 5 млн ₽/год (b) 5-20 млн (c) 20-50 млн (d) 50-100 млн (e) 100+ млн (f) не определён | Распределение каналов |
 | 8 | **Горизонт стратегии?** (a) 3 месяца (b) 6 месяцев (c) 12 месяцев (d) 12+ месяцев | Этапность планов |
+| 9 | **Какие дисциплины нужны?** (a) Только стратегия (b) + SMM (c) + ORM (d) + PR (e) Полный цикл (SMM+ORM+PR) | Объём стратегии |
 
 ### Optional Deep-Dive Questions (ask if relevant)
 
@@ -68,6 +111,8 @@ Ask questions **one at a time**. Prefer multiple choice. If user provided a brie
 | Какие каналы уже используете? | Состояние != старт с нуля |
 | Есть ли brand guidelines / TOV? | Нужен для креативных направлений |
 | Есть ли данные по текущим метрикам? (трафик, конверсия, подписчики) | Состояние != старт с нуля |
+| Есть ли платные отчёты (Autostat, Mediascope, Brand Health)? | Для точности данных |
+| Какие платформы/соцсети приоритетны? | Для SMM-блока |
 
 ### After Discovery: Confirm Scope
 
@@ -77,8 +122,9 @@ Present user with a summary of what the strategy will contain:
 Подтверждение scope стратегии:
 - Бренд: [название]
 - Категория: [категория]
-- Цель: [цель]
-- ЦА: [описание]
+- Бизнес-цели: [сформулированные цели]
+- Маркетинговые цели: [цели]
+- ЦА: [описание + ключевые сегменты]
 - Конкуренты: [список]
 - География: [гео]
 - Бюджет: [коридор]
@@ -86,19 +132,35 @@ Present user with a summary of what the strategy will contain:
 
 Блок 1 (Аналитика):
 ☑ Макроэкономика + потребитель
-☑ Обзор медиа рынка
-☑ Фокус на категорию
-☑ Анализ конкурентов
+☑ Рыночные сегменты (розница, e-comm, категория)
+☑ Потребительская аналитика по сегментам ЦА
+☑ Обзор медиа и рекламного рынка
+☑ Фокус на категорию + предиктивная аналитика
+☑ Анализ конкурентов (бизнес + коммуникации + соцсети)
+☐/☑ Brand Health оценка (UBA proxy)
 ☐/☑ Международная аналитика
 ☑ SWOT
 
 Блок 2 (Стратегия):
-☑ Стратегические задачи
-☑ Коммуникационная территория + ЦА
-☑ Каналы + контент + блогеры
+☑ Каскад: бизнес-цели → маркетинг → коммуникации → KPI
+☑ Big Creative Idea
+☑ Коммуникационная территория + ЦА-сегменты
+☑ Каналы + контент-рубрики + блогеры
+☑ Platform-specific стратегия
 ☐/☑ Креативные направления
 ☑ Бюджет
-☑ KPI
+☑ Прогрессивные KPI (с конкурентным бенчмарком)
+
+Блок 3 (Дисциплины — опционально):
+☐/☑ SMM (контент-план, медиаплан, конкурентный бенчмарк)
+☐/☑ ORM/SERM (social listening, sentiment, отзывы)
+☐/☑ PR (медиа-ландшафт, журналисты, спецпроекты)
+☐/☑ Hero Project (1-2 флагманских спецпроекта с ROI)
+
+Формат финального продукта:
+☑ HTML-сайт (deploy на Vercel)
+☐/☑ PPTX презентация (в темплейте клиента)
+☐/☑ Dashboard template
 
 Подтверждаете? Есть что добавить?
 ```
@@ -150,12 +212,19 @@ budget:
 
 horizon: "12m"  # 3m | 6m | 12m | 12m+
 
+disciplines:
+  smm: true           # Отдельный SMM-блок с контент-планом и медиапланом
+  orm: false           # ORM/SERM блок
+  pr: false            # PR блок с медиа-ландшафтом
+  hero_project: false  # Флагманский спецпроект с ROI
+
 scope:
   international_analytics: true
   creative_directions: true
   influencer_strategy: true
   seasonality: true
   b2b_segment: false
+  brand_health_proxy: true  # Оценка UBA на основе медиаданных
 
 extra_context: |
   Бренд на старте активной маркетинговой активности.
@@ -175,49 +244,141 @@ Launch **4-6 research agents simultaneously** using the Agent tool. Each agent u
 
 ### Agent 1: Brand Research
 ```
-Search: "[brand name]", "[brand] отзывы", "[brand] сайт"
+Search: "[brand name]", "[brand] отзывы", "[brand] сайт", "[brand] соцсети"
 Gather: description, prices, services, social media presence,
-        follower counts, ratings, reviews, press coverage,
-        current positioning, USP
+        follower counts per platform (TG, VK, OK, Dzen), ER%,
+        ratings, reviews, press coverage, current positioning, USP,
+        current content strategy assessment (AS IS)
+Output: src/brand.md
 ```
 
-### Agent 2: Macro + Consumer
+### Agent 2: Macro Economy + Consumer
 ```
-Search: "экономика [country] [year] ВВП", "потребительские расходы [category]",
-        "[city] туризм статистика", "внутренний туризм рост"
-Gather: GDP, inflation, disposable income, consumer spending on category,
-        tourism stats, seasonal patterns, mobile/digital adoption
+Sources: cbr.ru, rosstat.gov.ru, rbk.ru, yakovpartners.ru
+Search: "экономика [country] [year] ВВП инфляция ключевая ставка",
+        "потребительские расходы [category]", "потребительское поведение [year]"
+Gather:
+  Макро: GDP, inflation, key rate, disposable income, consumer confidence
+  Рыночные сегменты: продовольственная розница, непродовольственная, e-commerce
+    — какие растут, какие падают, на сколько % vs прошлый год
+  Потребитель: поведение в текущих условиях, какие бренды выбирает,
+    доход, настроение, тренды потребления
+    — по конкретным сегментам ЦА бренда (например, мужчины 25-44)
+  Предиктивная аналитика: долгосрочные риски, прогнозы трендов
+Sources: mediascope.net/brandpulse, nielsen.com, kantar.com, ipsos-comcon.ru
+Output: src/macro.md
+
+IMPORTANT: Из всего объёма информации выбрать то, что ВЛИЯЕТ на:
+  1) потребителя данного бренда
+  2) индустрию/категорию
+  3) компанию в частности
+Не перечислять всё подряд — приоритизировать по значимости.
 ```
 
-### Agent 3: Competitors
+### Agent 3: Competitors (Business + Communications)
 ```
-Search: "[competitor] маркетинг", "[competitor] посещаемость цены",
-        "рынок [category] [city] [year]"
-Gather: For each competitor - prices, visitors, social media,
-        marketing channels, USPs, notable campaigns.
-        Market size, growth, trends, seasonality
+Search: "[competitor] продажи [year]", "[competitor] маркетинг стратегия",
+        "[competitor] соцсети подписчики", "рынок [category] [year]"
+Gather:
+  Бизнес: продажи, доля рынка, динамика YoY, модельный ряд, цены
+  Коммуникации: соцсети (подписчики по платформам, рост YoY%, ER%),
+    медиабюджеты (если доступно), позиционирование, TOV, контент-подход
+  SMM бенчмарк (ОБЯЗАТЕЛЬНАЯ ТАБЛИЦА):
+    | Бренд | TG подп. | TG рост% | TG ER% | VK подп. | VK рост% | VK ER% | Посты/мес |
+  Активности: кампании, спецпроекты, коллаборации, блогеры
+  Brand Territory: с какими событиями/брендами ассоциируется конкурент
+
+  ФИНАНСОВЫЕ ДАННЫЕ ИЗ НАЛОГОВОЙ (для российских компаний):
+  Для каждого конкурента с российским юрлицом — запросить данные через DaData API.
+  API key хранится в .env как DADATA_API_KEY.
+
+  Поиск компании по названию:
+  curl -s -X POST "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -H "Authorization: Token $DADATA_API_KEY" \
+    -d '{"query": "[название компании]", "count": 3}'
+
+  Поиск по ИНН (если известен):
+  curl -s -X POST "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party" \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json" \
+    -H "Authorization: Token $DADATA_API_KEY" \
+    -d '{"query": "[ИНН]"}'
+
+  Из ответа DaData извлечь:
+  - Полное юридическое название, ИНН, ОГРН
+  - Дата регистрации, статус (действующее/ликвидировано)
+  - Руководитель (ФИО, должность)
+  - Адрес регистрации
+  - Уставный капитал
+  - Основной ОКВЭД (вид деятельности)
+  - Количество сотрудников (если доступно)
+  - Финансовые данные из налоговой отчётности (data.finance):
+    - Выручка (revenue) за последние доступные годы
+    - Расходы (expense)
+    - Чистая прибыль/убыток (income)
+    - Налоги уплаченные (tax)
+    - Долги (debt)
+    - Пени (penalty)
+
+  ОБЯЗАТЕЛЬНАЯ ТАБЛИЦА ФИНАНСОВ КОНКУРЕНТОВ:
+  | Компания | ИНН | Выручка 2023 | Выручка 2024 | Динамика | Чистая прибыль | Сотрудники |
+  Если данные недоступны (иностранная компания, нет в DaData) — пометить "н/д".
+  Если компания найдена, но финансовые данные пусты — пометить "[нет данных в отчётности]".
+
+  ВАЖНО: Читать API key из .env, НЕ хардкодить в промптах.
+  Команда: source .env && curl -s -X POST ...
+
+Output: src/competitors.md
 ```
 
-### Agent 4: Media Market
+### Agent 4: Media & Advertising Market
 ```
+Sources: akarussia.ru, interactivead.ru (АРИР), sostav.ru, adindex.ru,
+         digitalbudget.ru, yandex.ru/adv, ads.vk.com, mediascope.net
 Search: "рекламный рынок [country] [year] АКАР", "digital реклама [year]",
         "медиаинфляция", "influencer маркетинг рынок"
-Gather: Ad market size by channel, media inflation, platform audiences,
-        key trends, regulatory changes, influencer market
+Gather:
+  Рекламный рынок: объём по каналам (Internet, TV, OOH, Radio, Press)
+  Digital подробно: performance, branding, video, classifieds, retail media,
+    messengers, influencers, audio ads — инвестиции + инфляция по каждому
+  Платформы: MAU/DAU по VK, TG, OK, Dzen, YouTube + аудиторные профили
+  Тренды: 5-7 ключевых, ранжированных по влиянию на категорию клиента
+  Инвестиции конкурентов: если доступно (Mediascope, Digital Budget)
+  Немеряемые каналы: контекст, CPA — агентская оценка
+
+IMPORTANT: Выбирать наиболее значимую информацию. Идти от общего к частному,
+от наиболее значимых трендов к наименее. Не рандомно — приоритизировать.
+Output: src/media.md
 ```
 
-### Agent 5: International Benchmarking (if scope includes)
+### Agent 5: Category Deep-Dive + Predictive Analytics
+```
+Search: "[category] рынок [country] [year]", "[category] прогноз",
+        "[brand] модели продажи", "top-10 [category] продажи"
+Gather:
+  Рынок категории: объём, динамика, прогнозы экспертов, сезонность
+  Top-10 по продажам: динамика YoY + выводы
+  Top-10 групп: динамика YoY
+  Разбивка бренда по моделям: какие делают объём, какие нишевые
+  Предиктивная аналитика: не только фиксация текущего,
+    но эстимация трендов на основании данных (куда движется рынок)
+  Brand Health proxy (если нет платных данных):
+    — оценка динамики UBA на основе медиа-упоминаний + рекламной активности
+    — "бренд скорее всего потерял/нарастил знание" с обоснованием
+Sources: autostat.ru (или отраслевой аналог), autonews.ru, getbrand.ru
+Output: src/category.md
+```
+
+### Agent 6: International Benchmarking (if scope includes)
 ```
 Search: "[category] marketing best practices international",
         "influencer marketing [category] case study",
         "digital marketing trends [category] [year]"
 Gather: Global best practices, case studies, influencer ROI benchmarks,
-        international platform strategies
-```
-
-### Agent 6: Category Deep-Dive (if needed)
-```
-Search: specific category data not covered by other agents
+        international platform strategies, brand territory examples
+Output: src/international.md
 ```
 
 **Important:** Each agent prompt must specify:
@@ -275,6 +436,60 @@ Mark data reliability in research files:
 | `[~ оценка]` | Single source or analytical estimate | Market projections, expert opinions |
 | `[? требует проверки]` | Conflicting data or unverified | When sources disagree |
 
+### Footnote Citations (MANDATORY)
+
+**EVERY fact, statistic, or data point in the strategy MUST have a numbered footnote citation.**
+
+This is non-negotiable. A strategy without verifiable sources has zero credibility.
+
+**How it works:**
+
+1. **In-text:** Each fact gets a superscript number linking to the sources page:
+```markdown
+Рынок алготрейдинга оценивается в $20-25 млрд ⁽¹⁾, при этом ритейл-сегмент растёт на 12.7% CAGR ⁽²⁾.
+```
+
+2. **Sources registry:** Each research agent MUST maintain a numbered source list as it works. When writing src/*.md files, include sources inline as footnotes.
+
+3. **Master sources file:** After all research and writing is complete, create `src/sources.md` — a single consolidated list of ALL sources used in the strategy:
+
+```markdown
+# Источники
+
+1. Technavio, "Algorithmic Trading Market 2025-2030", technavio.com, 2025
+2. Grand View Research, "Retail Algorithmic Trading Market Report", grandviewresearch.com, 2024
+3. Crypto.com, "Crypto Market Sizing Report", crypto.com/research, Jan 2025
+4. J.P. Morgan, "Retail Trading Flows", jpmorgan.com, Q1 2025
+...
+```
+
+Each entry MUST include: author/org, title/description, domain, date.
+
+4. **In strategy.md:** Use superscript numbers `⁽¹⁾` `⁽²⁾` `⁽³⁾` after every fact or number. The number corresponds to the entry in sources.md.
+
+5. **In HTML (index.html):** Footnote numbers are rendered as clickable superscript links `<sup><a href="sources.html#src-1">[1]</a></sup>` that jump to the sources page.
+
+6. **sources.html:** A dedicated styled HTML page listing all sources with anchors (`id="src-1"`, `id="src-2"`, etc.), using the same design system as other doc-*.html pages.
+
+**Research agent source tracking:**
+
+Each research agent prompt MUST include this instruction:
+```
+IMPORTANT: For every fact or number you include, record the source with:
+- Sequential number
+- Author/organization
+- Title or description
+- URL (full)
+- Date accessed or published
+
+Format at the end of your output:
+## Sources
+1. [Author], "[Title]", [url], [date]
+2. ...
+```
+
+**Minimum citation density:** At least 1 citation per paragraph in analytics sections. Tables with data must cite sources in a footer row or per-cell.
+
 ## Phase 3: Write Analytics Block (Block 1)
 
 Write sections based on research data. Each section must have:
@@ -330,6 +545,33 @@ Write sections based on research data. Each section must have:
 
 ## Phase 4: Write Strategy Block (Block 2)
 
+### 2.0. Goals Cascade (REQUIRED — BEFORE strategy sections)
+
+```markdown
+## КАСКАД ЦЕЛЕЙ
+
+| Бизнес-цели | Маркетинговые цели | Коммуникационные задачи | КАК | KPI |
+|-------------|-------------------|------------------------|-----|-----|
+| Рост продаж и доли рынка | Brand Push: рост знания | Увеличить UBA, построить образ бренда | Media pressure, content strategy, KOL | UBA +X%, Reach Y |
+| Рост прибыли | Sales Push: конверсия | Работа по всем этапам воронки | Performance, e-comm, регионы | Leads +X%, Conv +Y% |
+| ... | Ответ конкурентам | Отстроиться от конкурентов | Уникальное позиционирование | SOV, Share of Voice |
+```
+
+**IMPORTANT:** Даже если клиент не сформулировал бизнес-цели, стратег должен их вывести из контекста и данных аналитики. Каскад показывает, как каждая бизнес-цель трансформируется в конкретные действия и метрики.
+
+### 2.0.5. Big Creative Idea (REQUIRED)
+
+Before content strategy, formulate a **Big Creative Idea** — центральный креативный концепт, из которого вытекают все рубрики, TOV, и визуальный стиль.
+
+```markdown
+## BIG IDEA
+
+**Инсайт:** [наблюдение о потребителе/рынке, на котором строится идея]
+**Идея:** [формулировка в 1-2 предложения]
+**Слоган/хештег:** [короткая формула]
+**Почему это работает для [бренд]:** [связь с позиционированием и ЦА]
+```
+
 ### Structure
 
 ```markdown
@@ -358,14 +600,27 @@ Use this format: "Для [кого], кто [проблема], [бренд] —
   - Content/channel at each stage
 
 ## 2.3. Каналы продвижения
+
+### Platform-Specific Strategy (REQUIRED for each active platform)
+For each platform (VK, Telegram, OK, Dzen, YouTube, etc.):
+- **Роль платформы** в коммуникационной экосистеме бренда
+- **Целевая аудитория** платформы (кто, зачем, как потребляет)
+- **Форматы** — какие работают именно здесь
+- **Частота** — сколько постов/stories/видео в неделю/месяц
+- **KPI платформы** — подписчики, ER%, reach, конверсии
+
+### Content Strategy
+- **Content balance AS IS → TO BE** (если бренд уже ведёт соцсети):
+  | Тип контента | Сейчас % | Будет % |
+- **Branded рубрики** (REQUIRED) — именованные рубрики, привязанные к Big Idea:
+  | Рубрика | Описание | Формат | Направление | Постов/мес |
+  Каждая рубрика должна иметь уникальное имя, связанное с Big Idea бренда.
 - Media mix by funnel stage (awareness → consideration → conversion → loyalty)
-- For each channel: why, formats, frequency
-- Content strategy with pillars (table: pillar, share, examples)
 - **TOFU/MOFU/BOFU content breakdown:**
   - TOFU (Top of Funnel): awareness content types
   - MOFU (Middle): consideration content types
   - BOFU (Bottom): conversion content types
-- **Content plan for Month 1:** 20 specific topics (not just frequencies)
+- **Content plan for Month 1:** 20+ specific topics (не просто частоты — конкретные темы по дням)
 - Content calendar by channel (format, frequency)
 - Influencer recommendations:
   - Strategy (micro/macro split)
@@ -391,12 +646,107 @@ Use this format: "Для [кого], кто [проблема], [бренд] —
 - **A/B test budget** for first 4-6 weeks (5-10% of total)
 - For budgets 20M+: include **Reach/Frequency estimates** per channel
 
-## 2.6. KPI
-- KPIs per strategic task (current → 6 month → 12 month targets)
+## 2.6. KPI (Progressive, Competitive)
+- **Прогрессивные KPI с конкурентным бенчмарком:**
+  | Метрика | Сейчас | Через 3 мес | Через 6 мес | Через 12 мес | Бенчмарк (конкурент) |
+  Привязка к конкретным конкурентам: "сократить отставание от Top-3 на 50%",
+  "войти в Top-3 по [метрика]", "сократить gap от Top-2"
+- KPIs per strategic task (current → target, with competitor reference)
 - Influencer KPIs
-- Content KPIs
+- Content KPIs per platform
 - Measurement instruments for each
 - **Recommended analytics tools** (free + paid options)
+
+## 2.7. Brand Territory (if in scope)
+- Карта культурных/событийных партнёрств, соответствующих ДНК бренда
+- Категории: мероприятия, фестивали, музеи, спортивные события, бренды-партнёры
+- Обоснование: почему каждое партнёрство усиливает позиционирование
+
+## 2.8. Hero Project (if in scope)
+- 1-2 флагманских спецпроекта с:
+  - Концепция и название
+  - Формат (серия видео, роадшоу, спецпроект со СМИ, коллаборация)
+  - Timeline
+  - Бюджет (детализация по статьям)
+  - KPI projections (reach, views, media value)
+  - Projected ROI
+  - Что нужно от клиента (машины, доступ, спикеры)
+```
+
+## Phase 4.1: ORM/SERM Block (if disciplines.orm = true)
+
+```markdown
+# БЛОК 3. ORM/SERM
+
+## 3.1. Текущее состояние репутации
+- Social Listening данные (Brand Analytics или аналог):
+  | Метрика | Бренд | Бенчмарк (среднее конкурентов) | Место |
+  | Mentions | ... | ... | ... |
+  | Positive % | ... | ... | ... |
+  | NSI (Net Sentiment Index) | ... | ... | ... |
+  | Engagement | ... | ... | ... |
+- Sentiment heatmap по темам (качество, цена, технологии, дилеры и т.д.)
+- Top источники по sentiment (YouTube, Drive2, VK, Telegram, Dzen)
+
+## 3.2. Ключевые проблемы и барьеры
+- Что мешает покупке? (негативные отзывы, отсутствие информации, слабый SERP)
+- Где бренд проигрывает конкурентам по восприятию?
+
+## 3.3. Стратегия ORM
+- Работа с отзывами (авто-площадки, карты, маркетплейсы)
+- SERM: оптимизация поисковой выдачи
+- Работа с YouTube: комментарии, реакции, поддержка органического контента
+- Работа с картами (Яндекс.Карты, 2ГИС): рейтинги дилеров
+- Мониторинг и быстрое реагирование (SLA: время ответа)
+- Антикризисный план
+
+## 3.4. KPI ORM
+- Прогрессивные цели по positive mentions, NSI, рейтингам на площадках
+- Привязка к конкурентным позициям
+```
+
+## Phase 4.2: PR Block (if disciplines.pr = true)
+
+```markdown
+# БЛОК 4. PR
+
+## 4.1. Медиа-ландшафт
+- Доля публикаций бренда vs конкуренты (по данным Mediascope/Медиалогия)
+- Sentiment анализ по уровням СМИ (федеральные, региональные, отраслевые, блоги)
+- Доля brand-owned news (инициированных брендом vs реактивных)
+- Активность в блогосфере
+
+## 4.2. Ключевые выводы
+- Где бренд проигрывает конкурентам в медиа-поле
+- Что журналисты думают о бренде (если есть опрос/фидбэк)
+- Возможности для роста
+
+## 4.3. PR-стратегия
+- Медиа-отношения: Tier 1-2-3 СМИ, автомедиа, региональная пресса
+- Генерация инфоповодов: коллаборации, рейтинги, исследования, инфографика
+- Работа с журналистами: Press Circle Club, пресс-туры, эксклюзивы
+- Brand Territory: партнёрства с событиями/институциями
+- Спецпроекты со СМИ (концепция + бюджет)
+
+## 4.4. KPI PR
+- Количество публикаций (позитивных/нейтральных)
+- Доля в медиа-поле vs конкуренты
+- Количество лояльных СМИ
+- ROI спецпроектов (ADE/Cost)
+```
+
+## Phase 4.3: Ecosystem & Synergy (if multiple disciplines)
+
+```markdown
+## ЭКОСИСТЕМА
+
+Показать, как SMM, ORM и PR работают в синергии:
+- SMM генерирует контент → ORM использует для работы с отзывами
+- ORM выявляет барьеры → SMM/PR адресует их в коммуникациях
+- PR создаёт инфоповоды → SMM амплифицирует в соцсетях
+- KOL/UGC discovery → используется во всех дисциплинах
+
+Визуализировать как экосистемную диаграмму в HTML.
 ```
 
 ## Phase 4.5: Executive Summary + Action Plan (NEW — REQUIRED)
@@ -461,6 +811,7 @@ strategies/
     doc-competitors.html      # Competitor research
     doc-media.html            # Media market research
     doc-international.html    # International benchmarks (if applicable)
+    sources.html              # All sources with numbered anchors (linked from footnotes)
     raw/                      # Raw source data from research agents
       perplexity_macro.md     # Raw Perplexity/AI-aggregated data
       perplexity_competitors.md
@@ -470,6 +821,7 @@ strategies/
       competitors.md
       media_market.md
       international.md
+      sources.md              # Master list of all numbered sources
 ```
 
 **IMPORTANT:** The `src/` folder contains source markdown — these are working files, NOT for end users. The `index.html` appendix section must link ONLY to `doc-*.html` files, NEVER to `.md` files. End users see only HTML.
@@ -506,6 +858,19 @@ Create the folder at the start of Phase 2 (research), save all research files in
 - Vertical bar charts for seasonality (use fixed px height on container, not % on children)
 - SWOT as 2x2 colored grid
 
+**CRITICAL — Bar/Chart Rendering Rules (applies to ALL animated bars and charts):**
+- Animated bar fills MUST have explicit `width: 0` (horizontal) or `height: 0` (vertical) in CSS as initial state — otherwise CSS transitions have no start value and render nothing
+- Container elements (`.bar`, chart wrappers) MUST use fixed `px` dimensions, NEVER percentage-based height/width that depends on content
+- Vertical bars: set container to fixed `height: 200px` (or similar), bars use `height: X%` inside it
+- Horizontal bars: container is full width, bar fills use `width: 0` initial → animated to target `width: X%`
+- Always test: if an element animates from A to B, both A and B must be explicitly defined in CSS — browsers cannot transition from `auto` or missing values
+- IntersectionObserver pattern: set `data-width` or `data-height` on bar elements, apply via JS when visible. CSS must define the `0` starting point.
+- Example correct pattern:
+  ```css
+  .bar { height: 8px; width: 100%; background: rgba(0,0,0,0.1); }
+  .bar-fill { height: 100%; width: 0; transition: width 1.2s ease; }
+  ```
+
 **Animations:**
 - Scroll-reveal with IntersectionObserver
 - Animated counters for key numbers
@@ -518,8 +883,15 @@ Create the folder at the start of Phase 2 (research), save all research files in
 3. Sections 1.1-1.6 (alternating dark/light)
 4. Block 2 header
 5. Sections 2.1-2.6
-6. Appendix: links to research documents
+6. Appendix: links to research documents + sources page
 7. Footer
+
+**Footnote Citations in HTML:**
+- Every fact/number in index.html must have a superscript link: `<sup><a href="sources.html#src-N" class="footnote">[N]</a></sup>`
+- Style footnotes: small, accent color, no underline, hover underline
+- The `sources.html` page lists all sources with anchor IDs (`id="src-1"`, `id="src-2"`, etc.)
+- sources.html uses the same design system as doc-*.html pages
+- sources.html is linked from the appendix section AND from every footnote
 
 **Tech Stack:**
 - Tailwind CSS via CDN (`https://cdn.tailwindcss.com`)
@@ -588,6 +960,9 @@ The structure is universal. Adapt research queries and category focus:
 - [ ] All critical numbers have date tags
 - [ ] No Perplexity/AI tool mentions in output files
 - [ ] All analytics sections have sources
+- [ ] Every fact/number has a footnote citation ⁽ⁿ⁾
+- [ ] src/sources.md created with all numbered sources
+- [ ] sources.html created with anchor IDs for each source
 
 ### Content Completeness
 - [ ] Executive Summary present (1 page)
@@ -613,4 +988,6 @@ The structure is universal. Adapt research queries and category focus:
 - [ ] All doc-*.html pages link correctly from index.html
 - [ ] No .md files linked from index.html (only doc-*.html)
 - [ ] Body tag has `style="background-color:... !important;"` on ALL pages
+- [ ] Footnote links `[N]` in index.html point to sources.html#src-N
+- [ ] sources.html has all numbered sources with anchor IDs
 - [ ] Deployed to Vercel, URL shared with user
